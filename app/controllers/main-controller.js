@@ -5,12 +5,18 @@ class MainController {
         return {
             home: '/'
         };
-    }   
+    }
 
     home() {
-        return function(req, resp) {
+        return function (req, resp) {
             resp.marko(templates.main);
         };
+    }
+
+    listingTasks() {
+        return function(req, resp) {
+            resp.marko(templates.main);
+        }
     }
 
 }

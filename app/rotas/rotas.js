@@ -1,8 +1,4 @@
-const MainController = require('../main-controller/main-controller');
-const mainController = new MainController();
+const mainRotas = require('./main-rotas');
 module.exports = (app) => {
-    const mainRotas = MainController.rotas();
-    app.route(mainRotas.home)
-    .get(mainController.home());
-
+    mainRotas(app);
 };
