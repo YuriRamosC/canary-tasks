@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS tasks (
 
 const INSERIR_TASK_1 = 
 `
-INSERT INTO livros (
+INSERT INTO tasks (
     titulo,
     cliente,
     tipo,

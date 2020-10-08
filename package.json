@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "marko": "^4.23.7",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "sqlite3": "^5.0.0"
   }
 }

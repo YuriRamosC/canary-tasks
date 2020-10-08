@@ -9,15 +9,10 @@ class MainController {
 
     home() {
         return function (req, resp) {
-            resp.marko(templates.main);
+            resp.marko(templates.main.home);
         };
     }
 
-    listingTasks() {
-        return function(req, resp) {
-            resp.marko(templates.main);
-        }
-    }
 
 }
 

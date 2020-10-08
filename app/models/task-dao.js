@@ -1,27 +1,29 @@
-class LivroDao {
+class TaskDao {
 
     constructor(db) {
         this._db = db;
     }
 
-    adiciona(livro) {
+    adiciona(task) {
         return new Promise((resolve, reject) => {
             this._db.run(`
-                INSERT INTO livros (
+                INSERT INTO tasks (
                     titulo, 
-                    preco,
+                    cliente,
+                    tipo,
                     descricao
-                ) values (?,?,?)
+                ) values (?,?,?,?)
                 `,
                 [
-                    livro.titulo,
-                    livro.preco,
-                    livro.descricao
+                    task.titulo,
+                    task.cliente,
+                    task.tipo,
+                    task.descricao
                 ],
                 function (err) {
                     if (err) {
                         console.log(err);
-                        return reject('Não foi possível adicionar o livro!');
+                        return reject('Não foi possível adicionar o Serviço!');
                     }
 
                     resolve();
@@ -33,9 +35,9 @@ class LivroDao {
     lista() {
         return new Promise((resolve, reject) => {
             this._db.all(
-                'SELECT * FROM livros',
+                'SELECT * FROM tasks',
                 (erro, resultados) => {
-                    if (erro) return reject('Não foi possível listar os livros!');
+                    if (erro) return reject('Não foi possível listar os serviços!');
 
                     return resolve(resultados);
                 }
@@ -49,38 +51,40 @@ class LivroDao {
             this._db.get(
                 `
                     SELECT *
-                    FROM livros
+                    FROM tasks
                     WHERE id = ?
                 `,
                 [id],
-                (erro, livro) => {
+                (erro, task) => {
                     if (erro) {
-                        return reject('Não foi possível encontrar o livro!');
+                        return reject('Não foi possível encontrar o serviço!');
                     }
-                    return resolve(livro);
+                    return resolve(task);
                 }
             );
         });
     }
 
-    atualiza(livro) {
+    atualiza(task) {
         return new Promise((resolve, reject) => {
             this._db.run(`
-                UPDATE livros SET
+                UPDATE tasks SET
                 titulo = ?,
-                preco = ?,
-                descricao = ?
+                cliente= ?,
+                tipo = ?,
+                descricao
                 WHERE id = ?
             `,
             [
-                livro.titulo,
-                livro.preco,
-                livro.descricao,
-                livro.id
+                task.titulo,
+                task.cliente,
+                task.tipo,
+                task.descricao,
+                task.id
             ],
             erro => {
                 if (erro) {
-                    return reject('Não foi possível atualizar o livro!');
+                    return reject('Não foi possível atualizar o Serviço!');
                 }
 
                 resolve();
@@ -94,13 +98,13 @@ class LivroDao {
             this._db.get(
                 `
                     DELETE 
-                    FROM livros
+                    FROM tasks
                     WHERE id = ?
                 `,
                 [id],
                 (erro) => {
                     if (erro) {
-                        return reject('Não foi possível remover o livro!');
+                        return reject('Não foi possível remover o Serviço!');
                     }
                     return resolve();
                 }
@@ -109,4 +113,4 @@ class LivroDao {
     }
 }
 
-module.exports = LivroDao;
+module.exports = TaskDao;

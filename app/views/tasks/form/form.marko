@@ -1,0 +1,39 @@
+<html>
+  <head/>
+  <body>
+    <header class="cabecalhoPrincipal">
+      <include-html("../../menu.html")/>
+    </header>
+    <main class="conteudoPrincipal">
+      <div class="container">
+        <h1>Cadastro de Livros</h1>
+        <div if(data.errosValidacao)>
+          <div class="alert alert-danger" for(erro in data.errosValidacao)>${erro.param} - ${erro.msg}</div>
+        </div>
+        <form action="/tasks/form" method="post">
+          <div if(data.task.id)>
+            <input type="hidden" name="_method" value="PUT"/>
+            <input type="hidden" name="id" value="${data.task.id}"/>
+          </div>
+          <div class="form-group">
+            <label for="titulo">Titulo:</label>
+            <input type="text" id="titulo" name="titulo" value="${data.task.titulo}" placeholder="coloque o titulo" class="form-control"/>
+          </div>
+          <div class="form-group">
+            <label for="titulo">Cliente:</label>
+            <input type="text" id="cliente" name="cliente" value="${data.task.cliente}" placeholder="coloque o cliente" class="form-control"/>
+          </div>
+          <div class="form-group">
+            <label for="tipo">Tipo:</label>
+            <input type="text" id="tipo" name="tipo" value="${data.task.tipo}" placeholder="coloque o tipo" class="form-control"/>
+          </div>
+          <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <textarea cols="20" rows="10" id="descricao" name="descricao" placeholder="fale sobre o task" class="form-control">${data.task.descricao}</textarea>
+          </div>
+          <input type="submit" value="Salvar" class="btn btn-primary"/>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>
