@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS tasks (
     titulo TEXT NOT NULL,
     cliente TEXT NOT NULL,
     tipo TEXT NOT NULL,
-    descricao TEXT DEFAULT ('') NOT NULL
+    descricao TEXT DEFAULT ('')
 )
 `;
 

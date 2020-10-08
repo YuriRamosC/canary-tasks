@@ -237,3 +237,13 @@ nav .logo.space{
 .content .space{
   margin: 10px 0;
 }
+
+.button-link{
+  color: #ffcc00;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+}
+
+.button-link:hover{
+  color:#755e03;
+}

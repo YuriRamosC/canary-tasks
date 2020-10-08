@@ -28,10 +28,10 @@
                 <td>${task.tipo}</td>
                 <td>${task.descricao}</td>
                 <td>
-                  <a href="/tasks/form/${task.id}">Editar</a>
+                  <a class='button-link' href="/tasks/form/${task.id}">Editar</a>
                 </td>
                 <td>
-                  <a href="#" data-ref="${task.id}" data-type="remocao">Remover</a>
+                  <a class='button-link' href="#" data-ref="${task.id}" data-type="remocao">Remover</a>
                 </td>
               </tr>
             </tbody>
@@ -39,5 +39,7 @@
         </div>
       </div>
     </main>
+    <script src="../estatico/js/remove-task.js">
+    </script>
   </body>
 </html>

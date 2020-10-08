@@ -1,9 +1,21 @@
-const TaskController = require('../controllers/task-controller');
-const taskController = new TaskController();
+const TaskControlador = require('../controllers/task-controller');
+const taskController = new TaskControlador();
+
+const TaskValidation = require('../models/task-validation');
 
 module.exports = (app) => {
-    const taskRotas = TaskController.rotas();
-    app.route(taskRotas.lista)
-    .get(taskController.lista());
+    const taskRotas = TaskControlador.rotas();
 
-}
+    
+    app.route(taskRotas.lista).get(taskController.lista());
+
+
+    app.route(taskRotas.cadastro)
+    .get(taskController.formularioCadastro())
+    .post(TaskValidation.validacoes(),taskController.cadastra())
+    .put(taskController.edita());
+
+    app.get(taskRotas.edicao, taskController.formularioEdicao());
+
+    app.delete(taskRotas.delecao, taskController.remove());
+};

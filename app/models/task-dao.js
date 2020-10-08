@@ -66,13 +66,15 @@ class TaskDao {
     }
 
     atualiza(task) {
+        console.dir('task-dao:');
+        console.dir(task);
         return new Promise((resolve, reject) => {
             this._db.run(`
                 UPDATE tasks SET
                 titulo = ?,
-                cliente= ?,
+                cliente = ?,
                 tipo = ?,
-                descricao
+                descricao =?
                 WHERE id = ?
             `,
             [
@@ -84,7 +86,7 @@ class TaskDao {
             ],
             erro => {
                 if (erro) {
-                    return reject('Não foi possível atualizar o Serviço!');
+                    return reject(erro);
                 }
 
                 resolve();
@@ -93,7 +95,7 @@ class TaskDao {
     }
 
     remove(id) {
-
+        console.log('DELETAR');
         return new Promise((resolve, reject) => {
             this._db.get(
                 `
@@ -104,7 +106,8 @@ class TaskDao {
                 [id],
                 (erro) => {
                     if (erro) {
-                        return reject('Não foi possível remover o Serviço!');
+                        
+                        return reject(erro);
                     }
                     return resolve();
                 }

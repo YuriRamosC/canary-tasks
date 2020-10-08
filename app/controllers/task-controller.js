@@ -1,4 +1,4 @@
-//const { validationResult } = require('express-validator/check');
+const { validationResult } = require('express-validator/check');
 
 const TaskDao = require('../models/task-dao');
 const db = require('../../config/database');
@@ -33,7 +33,9 @@ class TaskControlador {
     }
 
     formularioCadastro() {
+        console.log('formulario cadastro');
         return function(req, resp) {
+            console.log('body: ', req.body);
             resp.marko(templates.tasks.form, { task: {} });
         };
     }
@@ -56,6 +58,7 @@ class TaskControlador {
 
     cadastra() {
         return function(req, resp) {
+            console.log('AQUII');
             console.log(req.body);
             const taskDao = new TaskDao(db);
             
@@ -72,7 +75,7 @@ class TaskControlador {
             }
     
             taskDao.adiciona(req.body)
-                    .then(resp.redirect(taskControlador.rotas().lista))
+                    .then(resp.redirect(TaskControlador.rotas().lista))
                     .catch(erro => console.log(erro));
         };
     }
@@ -83,13 +86,16 @@ class TaskControlador {
             const taskDao = new TaskDao(db);
             
             taskDao.atualiza(req.body)
-                    .then(resp.redirect(taskControlador.rotas().lista))
+                    .then(resp.redirect(TaskControlador.rotas().lista))
                     .catch(erro => console.log(erro));
         };
     }
 
     remove() {
+        console.log('REMOVE()');
         return function(req, resp) {
+            console.dir(req);
+            console.log(req.body);
             const id = req.params.id;
     
             const taskDao = new TaskDao(db);
