@@ -58,8 +58,6 @@ class TaskControlador {
 
     cadastra() {
         return function(req, resp) {
-            console.log('AQUII');
-            console.log(req.body);
             const taskDao = new TaskDao(db);
             
             const erros = validationResult(req);
@@ -73,7 +71,15 @@ class TaskControlador {
                     }
                 );
             }
-    
+            //salvar arquivo
+            var fstream;
+            req.pipe(req.busboy);
+            req.busboy.on('file', function(fieldname, file, filename) {
+                console.log('Uploading: '+ filename);
+                fstream = fs.createWriteStream('../task-images/'+filename);
+                file.pipe(fstream);
+            });
+
             taskDao.adiciona(req.body)
                     .then(resp.redirect(TaskControlador.rotas().lista))
                     .catch(erro => console.log(erro));

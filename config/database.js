@@ -25,6 +25,7 @@ CREATE TABLE IF NOT EXISTS tasks (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     titulo TEXT NOT NULL,
     cliente TEXT NOT NULL,
+    arquivo text,
     tipo TEXT NOT NULL,
     descricao TEXT DEFAULT ('')
 )

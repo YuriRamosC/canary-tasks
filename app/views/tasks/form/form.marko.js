@@ -48,7 +48,9 @@ function render(input, out, __component, component, state) {
     marko_attr("value", data.task.titulo) +
     " placeholder=\"coloque o titulo\" class=form-control></div><div class=form-group><label for=titulo>Cliente:</label><input type=text id=cliente name=cliente" +
     marko_attr("value", data.task.cliente) +
-    " placeholder=\"coloque o cliente\" class=form-control></div><div class=form-group><label for=tipo>Tipo:</label><input type=text id=tipo name=tipo" +
+    " placeholder=\"coloque o cliente\" class=form-control></div><div class=form-group><label for=arquivo>Arquivo:</label><input type=file id=file name=file" +
+    marko_attr("value", data.task.arquivo) +
+    " placeholder=\"insira o arquivo\" class=form-control></div><div class=form-group><label for=tipo>Tipo:</label><input type=text id=tipo name=tipo" +
     marko_attr("value", data.task.tipo) +
     " placeholder=\"coloque o tipo\" class=form-control></div><div class=form-group><label for=descricao>Descrição:</label><textarea cols=20 rows=10 id=descricao name=descricao placeholder=\"fale sobre o serviço\" class=form-control>" +
     marko_escapeXml(data.task.descricao) +
@@ -56,7 +58,7 @@ function render(input, out, __component, component, state) {
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "26");
+  await_reorderer_tag({}, out, __component, "29");
 
   _preferred_script_location_tag({}, out);
 

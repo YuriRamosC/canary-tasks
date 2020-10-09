@@ -5,6 +5,8 @@ const app = express();
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 
+var busboy = require('connect-busboy');
+app.use(busboy());
 
 app.use('/estatico', express.static('./app/public'));
 app.use(bodyParser.urlencoded({
