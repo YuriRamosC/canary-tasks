@@ -71,13 +71,6 @@ class TaskControlador {
                     }
                 );
             }
-            //salvar arquivo
-            /*req.busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
-
-                var saveTo = path.join(__dirname, 'uploads/' + filename);
-                file.pipe(fs.createWriteStream(saveTo));
-            });
-            req.pipe(req.busboy);*/
 
             taskDao.adiciona(req.body)
                 .then(resp.redirect(TaskControlador.rotas().lista))
@@ -99,8 +92,6 @@ class TaskControlador {
     remove() {
         console.log('REMOVE()');
         return function (req, resp) {
-            console.dir(req);
-            console.log(req.body);
             const id = req.params.id;
 
             const taskDao = new TaskDao(db);

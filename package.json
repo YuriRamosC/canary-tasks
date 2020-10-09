@@ -16,6 +16,8 @@
     "express": "^4.17.1",
     "express-fileupload": "^1.2.0",
     "express-validator": "^6.6.1",
+    "formidable": "^1.2.2",
+    "fs": "0.0.1-security",
     "marko": "^4.23.7",
     "method-override": "^3.0.0",
     "nodemon": "^2.0.4",
