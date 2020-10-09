@@ -4,21 +4,22 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
-
+var fs = require('fs');
 var busboy = require('connect-busboy');
 app.use(busboy());
 
 app.use('/estatico', express.static('./app/public'));
 app.use(bodyParser.urlencoded({
-    extended: true
+  extended: true
 }));
+
 app.use(methodOverride(function (req, res) {
-    if (req.body && typeof req.body === 'object' && '_method' in req.body) {
-      // look in urlencoded POST bodies and delete it
-      var method = req.body._method;
-      delete req.body._method;
-      return method;
-    }
+  if (req.body && typeof req.body === 'object' && '_method' in req.body) {
+    // look in urlencoded POST bodies and delete it
+    var method = req.body._method;
+    delete req.body._method;
+    return method;
+  }
 }));
 
 const rotas = require('../../app/rotas/rotas');
