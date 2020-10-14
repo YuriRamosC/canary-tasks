@@ -88,8 +88,8 @@ class TaskControlador {
 
     adicionarArquivos() {
         return function (req, resp) {
-
-
+            console.log('chegou');
+            console.dir(req.body);
             if (req.body.file) {
                 console.log('achou file:' + req.body.file);
                 console.dir(req.body.file);
@@ -97,8 +97,7 @@ class TaskControlador {
             } else {
                 console.log('file: ' + req.body.file);
             }
-            resp.redirect(TaskControlador.rotas().lista)
-                .catch(erro => console.log(erro));
+            resp.redirect(TaskControlador.rotas().lista);
         }
     }
 

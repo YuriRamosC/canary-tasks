@@ -2,7 +2,8 @@ const TaskControlador = require('../controllers/task-controller');
 const taskController = new TaskControlador();
 
 const TaskValidation = require('../models/task-validation');
-
+const multer = require('multer');
+const upload = multer({ dest: '/estatico/task-images' });
 module.exports = (app) => {
     const taskRotas = TaskControlador.rotas();
 
@@ -16,7 +17,7 @@ module.exports = (app) => {
     .put(taskController.edita());
 
     app.get(taskRotas.adicionarArquivos, taskController.formularioArquivos());
-    app.post(taskRotas.armazenar, taskController.adicionarArquivos());
+    app.post(taskRotas.armazenar, upload.single('file'),taskController.adicionarArquivos());
 
     app.get(taskRotas.edicao, taskController.formularioEdicao());
 
