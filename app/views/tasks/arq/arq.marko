@@ -1,0 +1,22 @@
+<html>
+  <head/>
+  <body>
+    <header class="cabecalhoPrincipal">
+      <include-html("../../menu.html")/>
+    </header>
+    <main class="conteudoPrincipal">
+      <div class="container">
+        <h1>${data.task.titulo}</h1>
+        <h2>${data.task.cliente}</h2>
+        <form action="/tasks/arq/ok" method="post" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="file">Arquivo:</label>
+            <input type="file" id="file" name="file" class="form-control"/>
+          </div>
+          <input type="submit" value="Salvar" class="btn btn-primary"/>
+        </form>
+      </div>
+    </main>
+  </body>
+</html>
+s

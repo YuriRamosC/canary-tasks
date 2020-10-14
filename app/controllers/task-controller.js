@@ -5,6 +5,8 @@ const db = require('../../config/database');
 
 const templates = require('../views/templates');
 
+const multer = require('multer');
+const upload = multer({ dest: '/estatico/task-images' });
 class TaskControlador {
 
     static rotas() {
@@ -13,13 +15,14 @@ class TaskControlador {
             lista: '/tasks',
             cadastro: '/tasks/form',
             edicao: '/tasks/form/:id',
-            delecao: '/tasks/:id'
+            delecao: '/tasks/:id',
+            adicionarArquivos: '/tasks/arq/:id',
+            armazenar: '/tasks/arq/ok'
         };
     }
 
     lista() {
         return function (req, resp) {
-            console.log('chegou aqui');
             const taskDao = new TaskDao(db);
             taskDao.lista()
                 .then(tasks => resp.marko(
@@ -33,9 +36,7 @@ class TaskControlador {
     }
 
     formularioCadastro() {
-        console.log('formulario cadastro');
         return function (req, resp) {
-            console.log('body: ', req.body);
             resp.marko(templates.tasks.form, { task: {} });
         };
     }
@@ -72,15 +73,37 @@ class TaskControlador {
                 );
             }
 
+
             taskDao.adiciona(req.body)
                 .then(resp.redirect(TaskControlador.rotas().lista))
                 .catch(erro => console.log(erro));
         };
     }
 
+    formularioArquivos() {
+        return function (req, resp) {
+            resp.marko(templates.tasks.arq, { task: {} });
+        };
+    }
+
+    adicionarArquivos() {
+        return function (req, resp) {
+
+
+            if (req.body.file) {
+                console.log('achou file:' + req.body.file);
+                console.dir(req.body.file);
+                upload.single(req.body.file);
+            } else {
+                console.log('file: ' + req.body.file);
+            }
+            resp.redirect(TaskControlador.rotas().lista)
+                .catch(erro => console.log(erro));
+        }
+    }
+
     edita() {
         return function (req, resp) {
-            console.log(req.body);
             const taskDao = new TaskDao(db);
 
             taskDao.atualiza(req.body)
@@ -90,7 +113,6 @@ class TaskControlador {
     }
 
     remove() {
-        console.log('REMOVE()');
         return function (req, resp) {
             const id = req.params.id;
 

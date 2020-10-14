@@ -20,6 +20,7 @@
     "fs": "0.0.1-security",
     "marko": "^4.23.7",
     "method-override": "^3.0.0",
+    "multer": "^1.4.2",
     "nodemon": "^2.0.4",
     "sqlite3": "^5.0.0"
   }

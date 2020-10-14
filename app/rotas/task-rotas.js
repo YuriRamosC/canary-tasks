@@ -15,6 +15,9 @@ module.exports = (app) => {
     .post(TaskValidation.validacoes(),taskController.cadastra())
     .put(taskController.edita());
 
+    app.get(taskRotas.adicionarArquivos, taskController.formularioArquivos());
+    app.post(taskRotas.armazenar, taskController.adicionarArquivos());
+
     app.get(taskRotas.edicao, taskController.formularioEdicao());
 
     app.delete(taskRotas.delecao, taskController.remove());
