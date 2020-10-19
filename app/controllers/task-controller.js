@@ -4,9 +4,6 @@ const TaskDao = require('../models/task-dao');
 const db = require('../../config/database');
 
 const templates = require('../views/templates');
-
-const multer = require('multer');
-const upload = multer({ dest: '/estatico/task-images' });
 class TaskControlador {
 
     static rotas() {
@@ -86,20 +83,14 @@ class TaskControlador {
         };
     }
 
-    adicionarArquivos() {
+    /*adicionarArquivos() {
         return function (req, resp) {
-            console.log('chegou');
-            console.dir(req.body);
-            if (req.body.file) {
-                console.log('achou file:' + req.body.file);
-                console.dir(req.body.file);
-                upload.single(req.body.file);
-            } else {
-                console.log('file: ' + req.body.file);
-            }
+            console.log('achou file:'+ req.file);
+            upload.single(req.file);
+
             resp.redirect(TaskControlador.rotas().lista);
         }
-    }
+    }*/
 
     edita() {
         return function (req, resp) {
