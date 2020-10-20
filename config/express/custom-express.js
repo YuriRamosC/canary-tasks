@@ -16,7 +16,7 @@ const storageConfig = multer.diskStorage({
   filename(req, file = {}, cb) {
     const { originalname } = file;
     const fileExtension = (originalname.match(/\.+[\S]+$/) || [])[0];
-    cb(null, `${file.fieldname}__${Date.now()}${fileExtension}`);
+    cb(null, `${file.originalname}${fileExtension}`);
   }
 });
 const upload = multer({storage: storageConfig});

@@ -19,9 +19,6 @@ module.exports = (app) => {
         arquivoUpload(req, resp, (err) => {
             if (err) return console.log(err);
 
-            const { filename, size } = req.file;
-            console.log('Aqui');
-            console.log(req.file);
             resp.redirect(TaskControlador.rotas().lista);
         });
 

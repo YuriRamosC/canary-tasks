@@ -79,6 +79,7 @@ class TaskControlador {
 
     formularioArquivos() {
         return function (req, resp) {
+            console.log(req.body.task);
             resp.marko(templates.tasks.arq, { task: {} });
         };
     }
