@@ -82,16 +82,7 @@ class TaskControlador {
             resp.marko(templates.tasks.arq, { task: {} });
         };
     }
-
-    /*adicionarArquivos() {
-        return function (req, resp) {
-            console.log('achou file:'+ req.file);
-            upload.single(req.file);
-
-            resp.redirect(TaskControlador.rotas().lista);
-        }
-    }*/
-
+    
     edita() {
         return function (req, resp) {
             const taskDao = new TaskDao(db);

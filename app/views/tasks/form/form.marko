@@ -6,7 +6,7 @@
     </header>
     <main class="conteudoPrincipal">
       <div class="container">
-        <h1>Cadastro de Livros</h1>
+        <h1>Novo serviço</h1>
         <div if(data.errosValidacao)>
           <div class="alert alert-danger" for(erro in data.errosValidacao)>${erro.param} - ${erro.msg}</div>
         </div>
@@ -23,9 +23,45 @@
             <label for="titulo">Cliente:</label>
             <input type="text" id="cliente" name="cliente" value="${data.task.cliente}" placeholder="coloque o cliente" class="form-control"/>
           </div>
-          <div class="form-group">
-            <label for="tipo">Tipo:</label>
-            <input type="text" id="tipo" name="tipo" value="${data.task.tipo}" placeholder="coloque o tipo" class="form-control"/>
+          <div class="row">
+            <div class="form-group col">
+              <label for="tipo">Tipo:</label>
+              <input type="text" id="tipo" name="tipo" value="${data.task.tipo}" placeholder="coloque o tipo" class="form-control"/>
+            </div>
+            <div class="form-group col">
+              <label for="altura">Medidas:</label>
+              <div class="row">
+                <div class="col">
+                  <input type="number" class="form-control" id="altura" name="altura" placeholder="Altura..." value="${data.task.altura}"/>
+                </div>
+                <label class="form-group">x</label>
+                <div class="col">
+                  <input type="number" class="form-control" id="largura" name="largura" placeholder="Largura..." value="${data.task.largura}"/>
+                </div>
+                <div class="col">
+                  <select class="form-control" id="unid" name="unid" placeholder="Selecione a unidade de medida">
+                    <if(data.task.unid =='MM')>
+                      <option selected>MM</option>
+                    </if>
+                    <else>
+                      <option>MM</option>
+                    </else>
+                    <if(data.task.unid =='CM')>
+                      <option selected>CM</option>
+                    </if>
+                    <else>
+                      <option>CM</option>
+                    </else>
+                    <if(data.task.unid =='M')>
+                      <option selected>M</option>
+                    </if>
+                    <else>
+                      <option>M</option>
+                    </else>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="form-group">
             <label for="descricao">Descrição:</label>

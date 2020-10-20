@@ -27,6 +27,9 @@ CREATE TABLE IF NOT EXISTS tasks (
     cliente TEXT NOT NULL,
     arquivo text,
     tipo TEXT NOT NULL,
+    altura NUMBERIC NOT NULL,
+    largura NUMBERIC NOT NULL,
+    unid TEXT NOT NULL,
     descricao TEXT DEFAULT ('')
 )
 `;
@@ -37,8 +40,11 @@ INSERT INTO tasks (
     titulo,
     cliente,
     tipo,
+    altura,
+    largura,
+    unid,
     descricao
-) SELECT 'Cartão Master', 'Master Óleo', 'Cartão 4x1', 'UV total frente 4x1 1000' WHERE NOT EXISTS (SELECT * FROM tasks WHERE titulo = 'Cartão Master')
+) SELECT 'Cartão Master', 'Master Óleo', 'Cartão 4x1', 5,9, 'CM', 'UV total frente 4x1 1000' WHERE NOT EXISTS (SELECT * FROM tasks WHERE titulo = 'Cartão Master')
 `;
 
 bd.serialize(() => {

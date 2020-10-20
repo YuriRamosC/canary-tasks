@@ -11,13 +11,19 @@ class TaskDao {
                     titulo, 
                     cliente,
                     tipo,
+                    altura,
+                    largura,
+                    unid,
                     descricao
-                ) values (?,?,?,?)
+                ) values (?,?,?,?,?)
                 `,
                 [
                     task.titulo,
                     task.cliente,
                     task.tipo,
+                    task.altura,
+                    task.largura,
+                    task.unid,
                     task.descricao
                 ],
                 function (err) {
@@ -66,14 +72,15 @@ class TaskDao {
     }
 
     atualiza(task) {
-        console.dir('task-dao:');
-        console.dir(task);
         return new Promise((resolve, reject) => {
             this._db.run(`
                 UPDATE tasks SET
                 titulo = ?,
                 cliente = ?,
                 tipo = ?,
+                altura = ?,
+                largura = ?,
+                unid = ?,
                 descricao =?
                 WHERE id = ?
             `,
@@ -81,6 +88,9 @@ class TaskDao {
                 task.titulo,
                 task.cliente,
                 task.tipo,
+                task.altura,
+                task.largura,
+                task.unid,
                 task.descricao,
                 task.id
             ],
