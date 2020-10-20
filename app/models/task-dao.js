@@ -15,7 +15,7 @@ class TaskDao {
                     largura,
                     unid,
                     descricao
-                ) values (?,?,?,?,?)
+                ) values (?,?,?,?,?,?,?)
                 `,
                 [
                     task.titulo,
