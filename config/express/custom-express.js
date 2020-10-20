@@ -8,7 +8,7 @@ var fs = require('fs');
 
 app.use('/estatico', express.static('./app/public'));
 //multer configuration
-const multer = require('multer');
+/*const multer = require('multer');
 const storageConfig = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, './public/task-images')
@@ -20,7 +20,8 @@ const storageConfig = multer.diskStorage({
   }
 });
 const upload = multer({storage: storageConfig});
-arquivoUpload = upload.single('file');
+arquivoUpload = upload.single('file'); // mudar para array*/
+
 //
 app.use(bodyParser.urlencoded({
   extended: true

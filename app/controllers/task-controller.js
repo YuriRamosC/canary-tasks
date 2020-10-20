@@ -4,6 +4,7 @@ const TaskDao = require('../models/task-dao');
 const db = require('../../config/database');
 
 const templates = require('../views/templates');
+
 class TaskControlador {
 
     static rotas() {
@@ -53,7 +54,19 @@ class TaskControlador {
                 .catch(erro => console.log(erro));
         };
     }
-
+    formularioArquivos() {
+        return function (req, resp) {
+            const id = req.params.id;
+            const taskDao = new TaskDao(db);
+            taskDao.buscaPorId(id)
+                .then(task =>
+                    resp.marko(
+                        templates.tasks.arq, 
+                        { task: task }
+                    )
+                );
+        };
+    }
     cadastra() {
         return function (req, resp) {
             const taskDao = new TaskDao(db);
@@ -77,13 +90,6 @@ class TaskControlador {
         };
     }
 
-    formularioArquivos() {
-        return function (req, resp) {
-            console.log(req.body.task);
-            resp.marko(templates.tasks.arq, { task: {} });
-        };
-    }
-    
     edita() {
         return function (req, resp) {
             const taskDao = new TaskDao(db);

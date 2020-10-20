@@ -11,8 +11,8 @@
         <form action="/tasks/arq/ok" method="post" enctype="multipart/form-data">
           <div class="form-group">
             <label for="file">Arquivo:</label>
-            <input type="hidden" id="id" name="id" value="${data.task.id}">
             <input type="file" id="file" name="file" class="form-control"/>
+            <input type="hidden" id="id" name="id" value="${data.task.id}">
           </div>
           <input type="submit" value="Salvar" class="btn btn-primary"/>
         </form>
