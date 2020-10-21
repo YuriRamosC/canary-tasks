@@ -19,9 +19,9 @@ function render(input, out, __component, component, state) {
     marko_escapeXml(data.task.titulo) +
     "</h1><h2>" +
     marko_escapeXml(data.task.cliente) +
-    "</h2><form action=/tasks/arq/ok method=post enctype=multipart/form-data><div class=form-group><label for=file>Arquivo:</label><input type=file id=file name=file class=form-control><input type=hidden id=id name=id" +
+    "</h2><form action=/tasks/arq/ok method=post enctype=multipart/form-data><div class=form-group><label for=file>Arquivo:</label><input type=hidden id=id name=id" +
     marko_attr("value", data.task.id) +
-    "></div><input type=submit value=Salvar class=\"btn btn-primary\"></form></div></main>");
+    "><input type=file id=file name=file class=form-control></div><input type=submit value=Salvar class=\"btn btn-primary\"></form></div></main>");
 
   init_components_tag({}, out);
 

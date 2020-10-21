@@ -1,12 +1,15 @@
 const TaskControlador = require('../controllers/task-controller');
 const taskController = new TaskControlador();
-
+var fs = require('fs');
 const TaskValidation = require('../models/task-validation');
 //multer configuration
 const multer = require('multer');
 const storageConfig = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, './public/task-images')
+        if (!fs.existsSync('./public/task-images/'+req.body.id)){
+            fs.mkdirSync('./public/task-images/'+req.body.id);
+        }
+        cb(null, './public/task-images/'+req.body.id);
     },
     filename(req, file = {}, cb) {
         const { originalname } = file;
@@ -28,7 +31,6 @@ module.exports = (app) => {
         .put(taskController.edita());
 
     app.get(taskRotas.adicionarArquivos, taskController.formularioArquivos());
-
 
 
     app.post(taskRotas.armazenar, upload.single('file'), function (req, resp) {
