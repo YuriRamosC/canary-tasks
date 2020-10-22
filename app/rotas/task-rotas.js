@@ -6,10 +6,13 @@ const TaskValidation = require('../models/task-validation');
 const multer = require('multer');
 const storageConfig = multer.diskStorage({
     destination: function (req, file, cb) {
-        if (!fs.existsSync('./public/task-images/'+req.body.id)){
-            fs.mkdirSync('./public/task-images/'+req.body.id);
+        if (!fs.existsSync('./public/task-images/'+req.body.cliente)){
+            fs.mkdirSync('./public/task-images/'+req.body.cliente);
         }
-        cb(null, './public/task-images/'+req.body.id);
+        if(!fs.existsSync('./public/task-images/'+req.body.cliente+'/'+req.body.titulo)){
+            fs.mkdirSync('./public/task-images/'+req.body.cliente+'/'+req.body.titulo);
+        }
+        cb(null, './public/task-images/'+req.body.cliente+'/'+req.body.titulo);
     },
     filename(req, file = {}, cb) {
         const { originalname } = file;
